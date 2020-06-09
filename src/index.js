@@ -1,15 +1,17 @@
-const http = require("http");
+const express = require("express");
 
 const port = 3000;
 
-const server = http.createServer(function (request, response) {
-  response.writeHead(200, {
-    "Content-Type": "text/html;charset=utf-8;"
-  });
+const server = new express();
 
-  response.end("Hello world");
+server.get('/', function (_, response) {
+  response.send('hello world from express app');
 });
 
-server.listen(port, function () {
-  console.log('listen on port:', port);
+server.listen(port, function (error) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('listen on port:', port);
+  }
 });
