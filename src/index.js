@@ -7,6 +7,19 @@ const server = new express();
 
 server.use(express.static(path.resolve(__dirname, './public')));
 
+server.get('/echo-user/:userName', function (request, response) {
+  response.send(`
+    <html>
+    <head>
+      <title>This is static html</title>
+    </head>
+    <body>
+      hello ${request.params.userName} naja
+    </body>
+  </html>
+  `);
+});
+
 server.get('/', function (_, response) {
   response.send('hello world from express app');
 });
